@@ -1,4 +1,4 @@
-# Techdegree Project 1 | OOP GAME SHOW APP
+# Techdegree Project 4 | OOP GAME SHOW APP
 
 a COURSE BY TREEHOUSE
 
