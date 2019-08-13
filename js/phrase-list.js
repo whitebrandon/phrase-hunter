@@ -1,6 +1,6 @@
 const phrase = [
     {
-        phrase: `Don't judge a book by its cover`,
+        phrase: `Dont judge a book by its cover`,
         category: `popular idioms`,
         hint: ``
     },
@@ -38,42 +38,5 @@ const phrase = [
         phrase: `Be where your enemy is not`,
         category: `philisophical quotes`,
         hint: `Sun Tzu`
-    },
-    {
-        
-    },
-    {
-        
-    },
-    {
-        
-    },
-    {
-        
-    },
-    {
-        
-    },
-    {
-        
-    },
-    {
-        
-    },
-    {
-        
-    },
-    {
-        
-    },
-    {
-        
-    },
-    {
-        
-    },
-    {
-        
-    },
-
+    }
 ]
