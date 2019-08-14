@@ -23,11 +23,6 @@ class Phrase {
                 const listItem = document.createElement('li')
                 listItem.className = 'space';
                 phraseList.appendChild(listItem)
-            } else if (/^'$/.test(this.phrase[i])) {
-                const listItem = document.createElement('li');
-                listItem.classList.add(this.phrase[i]);
-                listItem.style.display = "inline-block";
-                phraseList.appendChild(listItem);
             }
         }
     }
