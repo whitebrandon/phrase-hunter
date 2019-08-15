@@ -1,0 +1,49 @@
+/* main */
+
+li, ol, ul {
+    white-space: nowrap;
+}
+
+.break {
+    display: block;
+}
+
+#category p {
+    font-size: var(--font-size-medium);
+    color: #fff;
+    border: 2px solid rgba(0, 0, 0, .4);
+    background: #3a3f58;
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 5px;
+}
+
+#hint p {
+    color: #000;
+}
+
+#get-hint {
+    font-size: var(--font-size-medium);
+    color: #fff;
+    border: 2px solid rgba(0, 0, 0, .4);
+    background: #3a3f58;
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/***********************************
+            MEDIA QUERIES
+ ***********************************/
+
+ @media screen and (max-width: 770px) {
+    .main-container {
+        flex-wrap: nowrap;
+    }   
+
+    #banner {
+        flex-shrink: 2;
+    }
+ }

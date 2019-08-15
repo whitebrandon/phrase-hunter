@@ -23,3 +23,7 @@ document.addEventListener('keyup', function (e) {
         game.handleInteraction(e.type, undefined, e.key);
     }
 })
+
+window.addEventListener('resize', function () {
+    game.activePhrase.addLineBreak();
+})

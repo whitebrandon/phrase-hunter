@@ -31,6 +31,8 @@ class Game {
         overlay.style.display = "none";
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
+        this.activePhrase.addCategoryToDisplay();
+        this.activePhrase.addHintToDisplay();
     }
     /**
      * Handles onscreen keyboard button clicks and keypresses
@@ -72,7 +74,9 @@ class Game {
     removeLife () {
         document.querySelectorAll('#scoreboard img')[this.missed].setAttribute("src", "images/lostHeart.png");
         this.missed += 1;
-        if (this.missed === 5) {
+        if (this.missed === 4 && document.querySelector('#hint p').textContent !== this.activePhrase.hint) {
+            document.getElementById('hint').style.display = "none";
+        } else if (this.missed === 5) {
             this.gameOver(false);
         }
     }
@@ -119,6 +123,11 @@ class Game {
         document.querySelectorAll('#scoreboard img').forEach(heart => heart.setAttribute("src", "images/liveHeart.png"));
         overlay.classList.remove('win', 'lose');
         overlay.classList.add('start');
+        const mainContainer = document.querySelector('.main-container');
+            if (document.getElementById('category') && document.getElementById('hint')) {
+                mainContainer.removeChild(document.getElementById('category'));
+                mainContainer.removeChild(document.getElementById('hint'));
+            }
         });
     }
 }
