@@ -9,7 +9,7 @@ class Phrase {
         this.hint = hint.toLowerCase();
     }
     /** 
-     * Adds line break if phrase is longer than board
+     * Adds line break if phrase is longer than game board
      */
     addLineBreak () {
         const spaces = Array.from(document.querySelectorAll('#phrase li.space'));

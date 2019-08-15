@@ -38,12 +38,10 @@ li, ol, ul {
             MEDIA QUERIES
  ***********************************/
 
- @media screen and (max-width: 770px) {
+ @media screen and (max-height: 770px) {
+    /* ↓ keeps div#banner from disappearing on wrap */
     .main-container {
-        flex-wrap: nowrap;
-    }   
-
-    #banner {
-        flex-shrink: 2;
+        justify-content: normal;
     }
+
  }
