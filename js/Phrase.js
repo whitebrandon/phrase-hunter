@@ -75,8 +75,8 @@ class Phrase {
             document.getElementById('get-hint').removeEventListener('click', buyHint);
             const heart = Array.from(document.querySelectorAll('#scoreboard img[src="images/liveHeart.png"]'));
             if (heart.length > 1) {
-                game.removeLife();
                 game.activePhrase.showHint();
+                game.removeLife();
             }
         })
     }
@@ -84,7 +84,7 @@ class Phrase {
      * Shows hint and kills one heart
      */
     showHint () {
-        document.querySelector('#hint p').textContent = this.hint;
+        document.querySelector('#hint p').innerHTML = this.hint;
     }
     /**
      * Checks if passed letter is in phrase

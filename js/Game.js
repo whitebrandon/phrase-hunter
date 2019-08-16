@@ -7,6 +7,7 @@ class Game {
         this.missed = 0;
         this.phrases = this.createPhrases();
         this.activePhrase = null;
+        this.ready = false;
     }
     /**
      * Creates phrases for use in game
@@ -33,6 +34,8 @@ class Game {
         this.activePhrase.addPhraseToDisplay();
         this.activePhrase.addCategoryToDisplay();
         this.activePhrase.addHintToDisplay();
+        this.addInstructionsToDisplay();
+        this.ready = true;
     }
     /**
      * Handles onscreen keyboard button clicks and keypresses
@@ -41,23 +44,26 @@ class Game {
      * @param {keypress value} key - the value of the key that was pressed
      */
     handleInteraction (type, button, key) {
-        if (type === "keyup") {
-            const keyboard = Array.from(document.querySelectorAll('#qwerty button'));
-            button = keyboard.find(button => button.textContent === key);
-        };
-        if (this.activePhrase.checkLetter(button.textContent)) {
-            button.classList.add('chosen');
-            button.setAttribute('disabled', true);
-            this.activePhrase.showMatchedLetter(button.textContent);
-            this.checkForWin();
-            if (this.checkForWin()) {
-                this.gameOver(true);
-            }
-        } else {
-            button.classList.add('wrong');
-            button.setAttribute('disabled', true);
-            this.removeLife();
-        };
+        if (this.ready) {
+                if (type === "keyup") {
+                const keyboard = Array.from(document.querySelectorAll('#qwerty button'));
+                button = keyboard.find(button => button.textContent === key);
+            };
+            if (this.activePhrase.checkLetter(button.textContent)) {
+                button.classList.add('chosen');
+                button.setAttribute('disabled', true);
+                this.activePhrase.showMatchedLetter(button.textContent);
+                this.checkForWin();
+                if (this.checkForWin()) {
+                    this.ready = false;
+                    setTimeout(this.gameOver, 750, true);
+                }
+            } else {
+                button.classList.add('wrong');
+                button.setAttribute('disabled', true);
+                this.removeLife();
+            };
+        }
     }
     /**
      * Checks for winning move
@@ -77,7 +83,8 @@ class Game {
         if (this.missed === 4 && document.querySelector('#hint p').textContent !== this.activePhrase.hint) {
             document.getElementById('hint').style.display = "none";
         } else if (this.missed === 5) {
-            this.gameOver(false);
+            this.ready = false;
+            setTimeout(this.gameOver, 500, false);
         }
     }
     /**
@@ -99,18 +106,26 @@ class Game {
                                  "You got it right. Good stuff!",
                                  "Not bad, but the next one won't be so easy.",
                                  "You're pretty smart. You must read a lot."];
-        const losingMessages = ["You lost all of your ♥s. Wanna try again?",
+        const losingMessages = ["You lost all of your ♥s. Wanna play again?",
                                 "Sorry, but nobody wins them all.",
                                 "Better luck next time, Amigo.",
                                 "If at first you don't succeed... Try, try again.",
                                 "Take a mulligan. It'll be our little secret."]; 
         if (gameWon) {
-            document.getElementById('game-over-message').textContent = this.getRandomMessage(winningMessages);
+            document.getElementById('game-over-message').textContent = game.getRandomMessage(winningMessages);
             overlay.classList.replace('start', 'win');
         } else {
-            document.getElementById('game-over-message').textContent = this.getRandomMessage(losingMessages);
+            document.getElementById('game-over-message')
+                    .textContent = `The answer was "${game.activePhrase.phrase}". ${game.getRandomMessage(losingMessages)}`;
             overlay.classList.replace('start', 'lose');
         }
+    }
+    /**
+     * Adds instructions to display
+     */
+    addInstructionsToDisplay () {
+        document.getElementById('banner').appendChild(document.createElement('p'))
+                .innerHTML = `win by guessing the phrase before losing all of your hearts`;
     }
     /**
      * Resets game to initial state
@@ -127,6 +142,7 @@ class Game {
             if (document.getElementById('category') && document.getElementById('hint')) {
                 mainContainer.removeChild(document.getElementById('category'));
                 mainContainer.removeChild(document.getElementById('hint'));
+                document.getElementById('banner').removeChild(document.querySelector('#banner p'));
             }
         });
     }
