@@ -202,7 +202,7 @@ const phrase = [
     {
         phrase: `Excuse me while I kiss the sky`,
         category: `song ♫ lyrics`,
-        hint: `From the hit "Purple Rain" `
+        hint: `From the 1967 Jimi Hendrix hit "Purple Haze" `
     },
     {
         phrase: `I can't help falling in love with you`,
@@ -225,14 +225,14 @@ const phrase = [
         hint: `Sung by Michael Jackson`
     },
     {
-        phrase: `Miscommunication lead to complication`,
+        phrase: `I must confess my destiny's manifest`,
         category: `song ♫ lyrics`,
-        hint: `Rapped by Lauryn Hill`
+        hint: `From the 1996 Fugees hit, "Ready or Not"`
     },
     {
         phrase: `There's a fire starting in my heart`,
         category: `song ♫ lyrics`,
-        hint: `From the hit, "Rolling in the Deep"`
+        hint: `From the 2010 Adele hit, "Rolling in the Deep"`
     },
     {
         phrase: `Hit me baby one more time`,
