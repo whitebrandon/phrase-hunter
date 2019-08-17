@@ -1,3 +1,5 @@
+'use strict';
+
 const phrase = [
     {
         phrase: `Winnnie the Pooh`,
