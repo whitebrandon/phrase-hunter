@@ -407,7 +407,7 @@ const phrase = [
     {
         phrase: `Couch potato salad`,
         category: `before and after`,
-        hint: `A deadbeat mixed with mayonnaise and vegetables` 
+        hint: `A deadbeat mixed with mayonnaise, eggs, and relish` 
     },
     {
         phrase: `Radio City Music Hall and Oates`,
