@@ -26,6 +26,20 @@ class Game {
         return this.phrases[Math.floor(Math.random() * this.phrases.length)];
     }
     /**
+     * Adds listener to window
+     */
+    onScreenResize () {
+        window.addEventListener('resize', function () {
+            game.activePhrase.addLineBreak();
+            const modal = this.document.getElementById('modal-button');
+            if (this.innerWidth <= 960) {
+                modal.innerHTML = "&#9776;";
+            } else {
+                modal.innerHTML = 'AUDIO &#x2699;';
+            }
+        })
+    }
+    /**
      * Begins game by selecting a random phrase and displaying it to the user
      */
     startGame () {
@@ -35,6 +49,7 @@ class Game {
         this.activePhrase.addCategoryToDisplay();
         this.activePhrase.addHintToDisplay();
         this.addInstructionsToDisplay();
+        this.onScreenResize();
         this.ready = true;
     }
     /**
@@ -115,8 +130,7 @@ class Game {
             document.getElementById('game-over-message').textContent = game.getRandomMessage(winningMessages);
             overlay.classList.replace('start', 'win');
         } else {
-            document.getElementById('game-over-message')
-                    .textContent = `The answer was "${game.activePhrase.phrase}". ${game.getRandomMessage(losingMessages)}`;
+            document.getElementById('game-over-message').textContent = game.getRandomMessage(losingMessages);
             overlay.classList.replace('start', 'lose');
         }
     }

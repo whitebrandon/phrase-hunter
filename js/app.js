@@ -9,6 +9,7 @@ document.getElementById('btn__reset').addEventListener('click', function () {
     game = new Game ();
     game.reset();
     game.startGame();
+    document.querySelector('.button').style.display = "block";
 });
 
 document.querySelectorAll('#qwerty button').forEach((key) => {
@@ -22,8 +23,4 @@ document.addEventListener('keyup', function (e) {
     if (qwerty.includes(e.key)) {
         game.handleInteraction(e.type, undefined, e.key);
     }
-})
-
-window.addEventListener('resize', function () {
-    game.activePhrase.addLineBreak();
 })
