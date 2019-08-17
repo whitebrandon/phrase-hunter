@@ -14,16 +14,16 @@ class Phrase {
     addLineBreak () {
         const spaces = Array.from(document.querySelectorAll('#phrase li.space'));
         spaces.forEach(space => space.classList.remove('break'));
-        do {
-            const reference = spaces.find(space => space.offsetLeft >= innerWidth - 50);
+        while (spaces.some(space => space.offsetLeft + 15 >= innerWidth)) {
+            const reference = spaces.find(space => space.offsetLeft + 15 >= innerWidth);
             if (reference !== undefined) {
                 const breakSpot = spaces[spaces.indexOf(reference) - 1];
                 if (breakSpot !== undefined) {
                     breakSpot.classList.add('break');
-                }
+                } else { break; }
             }
-        } while (spaces.find(space => space.offsetLeft >= innerWidth) !== undefined);
-        if (document.querySelector('#phrase li:last-child').offsetLeft > innerWidth - 65) {
+        };
+        if (document.querySelector('#phrase li:last-child').offsetLeft +65 >= innerWidth) {
             spaces[spaces.length - 1].classList.add('break');
         }
     }
