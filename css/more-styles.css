@@ -35,6 +35,10 @@ li, ol, ul {
     border-radius: 5px;
 }
 
+#banner p {
+    padding: 0;
+}
+
 /* Hint Button */
 
 #get-hint {
@@ -57,7 +61,7 @@ li, ol, ul {
             MEDIA QUERIES
  ***********************************/
 
- @media screen and (max-height: 770px) {
+ @media screen and (max-height: 768px) {
     /* ↓ keeps div#banner from disappearing on wrap */
     .main-container {
         justify-content: normal;
