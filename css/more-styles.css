@@ -1,4 +1,8 @@
-/* main */
+/* ======================================
+             Secondary Styles 
+   ====================================== */
+
+/* Phrase */
 
 li, ol, ul {
     white-space: nowrap;
@@ -7,6 +11,8 @@ li, ol, ul {
 .break {
     display: block;
 }
+
+/* Category */
 
 #category p {
     font-size: var(--font-size-medium);
@@ -18,6 +24,8 @@ li, ol, ul {
     border-radius: 5px;
 }
 
+/* Instructional Paragraphs */
+
 #banner p,
 #hint p {
     background: rgba(210, 210, 210, .1);
@@ -26,6 +34,8 @@ li, ol, ul {
     padding: inherit;
     border-radius: 5px;
 }
+
+/* Hint Button */
 
 #get-hint {
     font-size: var(--font-size-medium);
