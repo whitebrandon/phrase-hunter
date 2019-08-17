@@ -32,12 +32,12 @@ class Game {
         window.addEventListener('resize', function () {
             game.activePhrase.addLineBreak();
             const modal = this.document.getElementById('modal-button');
-            if (this.innerWidth <= 960) {
+            if (this.innerWidth <= 1024) {
                 modal.innerHTML = "&#9776;";
             } else {
                 modal.innerHTML = 'AUDIO &#x2699;';
             }
-        })
+        }, false);
     }
     /**
      * Begins game by selecting a random phrase and displaying it to the user
