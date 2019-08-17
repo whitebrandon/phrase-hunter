@@ -18,7 +18,9 @@ class Phrase {
             const reference = spaces.find(space => space.offsetLeft >= innerWidth - 50);
             if (reference !== undefined) {
                 const breakSpot = spaces[spaces.indexOf(reference) - 1];
-                breakSpot.classList.add('break');
+                if (breakSpot !== undefined) {
+                    breakSpot.classList.add('break');
+                }
             }
         } while (spaces.find(space => space.offsetLeft >= innerWidth) !== undefined);
         if (document.querySelector('#phrase li:last-child').offsetLeft > innerWidth - 65) {
