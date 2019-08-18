@@ -4,8 +4,6 @@
 
 'use strict';
 
-document.addEventListener('DOMContentLoaded', () => {
-
     class Phrase {
         constructor (phrase, category, hint) {
             this.phrase = phrase.toLowerCase();
@@ -18,16 +16,22 @@ document.addEventListener('DOMContentLoaded', () => {
         addLineBreak () {
             const spaces = Array.from(document.querySelectorAll('#phrase li.space'));
             spaces.forEach(space => space.classList.remove('break'));
-            while (spaces.some(space => space.offsetLeft + 15 >= innerWidth)) {
-                const reference = spaces.find(space => space.offsetLeft + 15 >= innerWidth);
-                if (reference !== undefined) {
-                    const breakSpot = spaces[spaces.indexOf(reference) - 1];
-                    if (breakSpot !== undefined) {
-                        breakSpot.classList.add('break');
+            while (spaces.some(space => (space.offsetLeft + 15) >= innerWidth)) {
+                const reference = spaces.find(space => (space.offsetLeft + 15) >= innerWidth);
+                if (reference) {
+                    const refIndex = spaces.indexOf(reference);
+                    const breakSpot = spaces[refIndex - 1];
+                    if (breakSpot) {
+                            if (breakSpot.classList.contains('break')) {
+                                spaces[refIndex].classList.add('break');
+                            } else {
+                                breakSpot.classList.add('break');
+                            }
                     } else { break; }
                 }
             };
-            if (document.querySelector('#phrase li:last-child').offsetLeft +65 >= innerWidth) {
+            if (document.querySelector('#phrase li:last-child').offsetLeft + 65 >= innerWidth &&
+                spaces[spaces.length - 1]) {
                 spaces[spaces.length - 1].classList.add('break');
             }
         }
@@ -51,35 +55,49 @@ document.addEventListener('DOMContentLoaded', () => {
             this.addLineBreak();
         }
         /**
+         * Creates a div el, give it an attribute, a child par, and inserts it into the DOM
+         * @param {array} el List of elements to be created
+         * @param {array} attr List of attributes to be added to elements
+         * @param {array} value List of values that attributes need to be set to
+         * @param {string} refChild The element to insert the div element before
+         */
+        createSection (el, attr, value, refChild) {
+            for (let i = 0; i < el.length; i++) {
+                const tag = document.createElement(el[i]);
+                if (i === 0 || i === 2) {
+                    tag.setAttribute(attr[i], value[i]);
+                    if (i === 0) {
+                        tag.className = "section";
+                        mainContainer
+                        .insertBefore(tag, document.getElementById(refChild));
+                    }
+                }
+                if (i === 1 || i === 2) {
+                    document.getElementById(value[i - 1]).appendChild(tag);
+                }
+            }
+        }
+        /**
          * Display category on game board
          */
         addCategoryToDisplay () {
-            const div = document.createElement('div');
-            div.setAttribute('id', "category");
-            div.className = "section";
-            const p = document.createElement('p');
-            p.innerHTML = `<span style="font-size:16px">the category is</span> </br> <span style="font-weight:500">${this.category}</span>`;
-            div.appendChild(p);
-            mainContainer.insertBefore(div, document.getElementById('qwerty'));
+            this.createSection(["div", "p"], ['id'], ['category'], 'qwerty');
+            document.querySelector('#category p')
+                    .innerHTML = `<span style="font-size:16px">the category is</span>
+                                  </br><span style="font-weight:500">${this.category}</span>`;
         }
         /**
-         * Adds hint to game board, but hides it
+         * Adds hint to game board, but hides it within an Click event
          */
         addHintToDisplay () {
-            const div = document.createElement('div');
-            div.setAttribute('id', "hint");
-            div.className = "section";
-            const p = document.createElement('p');
-            const button = document.createElement('button');
-            p.textContent = "click the button below to trade a heart for a hint";
-            button.setAttribute('id', "get-hint");
-            button.textContent = "hint";
-            div.appendChild(p);
-            div.appendChild(button);
-            mainContainer.insertBefore(div, document.getElementById('scoreboard'));
+            this.createSection(["div", "p", "button"], ["id", undefined, "id"],
+                                ["hint", "hint", "get-hint"], 'scoreboard');
+            document.querySelector('#hint p')
+                    .textContent = "click the button below to trade a heart for a hint";
+            document.querySelector('#hint button').textContent = "hint";
             document.getElementById('get-hint').addEventListener('click', function buyHint () {
                 document.getElementById('get-hint').removeEventListener('click', buyHint);
-                const heart = Array.from(document.querySelectorAll('#scoreboard img[src="images/liveHeart.png"]'));
+                const heart = document.querySelectorAll('#scoreboard img[src="images/liveHeart.png"]');
                 if (heart.length > 1) {
                     game.activePhrase.showHint();
                     game.removeLife();
@@ -110,4 +128,3 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-});

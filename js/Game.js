@@ -4,8 +4,6 @@
 
 'use strict';
 
-document.addEventListener('DOMContentLoaded', () => {
-
     class Game {
         constructor () {
             this.missed = 0;
@@ -115,6 +113,15 @@ document.addEventListener('DOMContentLoaded', () => {
             return list[Math.floor(Math.random() * list.length)]
         };
         /**
+         * Posts game-over message to display
+         * @param {variable} messageType — The type of message to display on overlay
+         * @param {string} outcome — Win or Lose 
+         */
+        postGameOverMessage (messageType, outcome) {
+            document.getElementById('game-over-message').textContent = this.getRandomMessage(messageType);
+            overlay.classList.replace('start', outcome);
+        }
+        /**
          * Displays game over message
          * @param {boolean} gameWon - whether or not the user won the game
          */
@@ -127,11 +134,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                     "Better luck next time, Amigo.", "If at first you don't succeed... Try, try again.",
                                     "Take a mulligan. It'll be our little secret."]; 
             if (gameWon) {
-                document.getElementById('game-over-message').textContent = game.getRandomMessage(winningMessages);
-                overlay.classList.replace('start', 'win');
+                game.postGameOverMessage(winningMessages, "win");
             } else {
-                document.getElementById('game-over-message').textContent = game.getRandomMessage(losingMessages);
-                overlay.classList.replace('start', 'lose');
+                game.postGameOverMessage(losingMessages, "lose");
             }
         }
         /**
@@ -139,25 +144,25 @@ document.addEventListener('DOMContentLoaded', () => {
          */
         addInstructionsToDisplay () {
             banner.appendChild(document.createElement('p'))
-                    .innerHTML = `win by guessing the phrase before losing all of your hearts`;
+                  .innerHTML = `win by guessing the phrase before losing all of your hearts`;
         }
         /**
          * Resets game to initial state
          */
         reset () {
             document.querySelectorAll('#phrase li').forEach(li => li.parentNode.removeChild(li));
-            qwertyKeys.forEach(button => {
+            document.querySelectorAll('#qwerty button').forEach(button => {
                 button.removeAttribute('disabled');
                 button.classList.remove('chosen', 'wrong');
-            document.querySelectorAll('#scoreboard img').forEach(heart => heart.setAttribute("src", "images/liveHeart.png"));
+            });
+            document.querySelectorAll('#scoreboard img')
+                    .forEach(heart => heart.setAttribute("src", "images/liveHeart.png"));
             overlay.classList.remove('win', 'lose');
             overlay.classList.add('start');
-                if (document.getElementById('category') && document.getElementById('hint')) {
-                    mainContainer.removeChild(document.getElementById('category'));
-                    mainContainer.removeChild(document.getElementById('hint'));
-                    banner.removeChild(document.querySelector('#banner p'));
-                }
-            });
+            if (document.getElementById('category') && document.getElementById('hint')) {
+                mainContainer.removeChild(document.getElementById('category'));
+                mainContainer.removeChild(document.getElementById('hint'));
+                banner.removeChild(document.querySelector('#banner p'));
+            }
         }
     }
-});

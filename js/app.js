@@ -4,15 +4,12 @@
 
 'use strict';
 
-document.addEventListener('DOMContentLoaded', () => {
-
     /* Global Variables */
     let game;
 
     const overlay = document.getElementById('overlay');
     const qwertyKeys = document.querySelectorAll('#qwerty button');
     const banner = document.getElementById('banner');
-    const mainContainer = document.querySelector('.main-container');
 
     document.getElementById('btn__reset').addEventListener('click', function () {
         game = new Game ();
@@ -33,4 +30,3 @@ document.addEventListener('DOMContentLoaded', () => {
             game.handleInteraction(e.type, undefined, e.key);
         }
     })
-});

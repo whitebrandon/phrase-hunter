@@ -5,11 +5,9 @@
 
 'use strict';
 
-document.addEventListener('DOMContentLoaded', () => {
-
     const modal = document.createElement('div');
     const modalBtn = document.createElement('button');
-
+    const mainContainer = document.querySelector('.main-container');
 
     mainContainer.insertBefore(modal, banner);
     modalBtn.setAttribute('id', 'modal-button');
@@ -72,4 +70,3 @@ document.addEventListener('DOMContentLoaded', () => {
             game.ready = true;
         }
     });
-});
