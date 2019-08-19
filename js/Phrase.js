@@ -97,6 +97,9 @@
             document.querySelector('#hint button').textContent = "hint";
             document.getElementById('get-hint').addEventListener('click', function buyHint () {
                 document.getElementById('get-hint').removeEventListener('click', buyHint);
+                if (checkboxes[1].checked) {
+                    audio.playSound('keypress', 'start');
+                }
                 const heart = document.querySelectorAll('#scoreboard img[src="images/liveHeart.png"]');
                 if (heart.length > 1) {
                     game.activePhrase.showHint();

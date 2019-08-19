@@ -10,12 +10,15 @@
     const overlay = document.getElementById('overlay');
     const qwertyKeys = document.querySelectorAll('#qwerty button');
     const banner = document.getElementById('banner');
+    let qwerty;
+    const checkboxes = Array.from(document.querySelectorAll('input[type="checkbox"]')); 
 
     document.getElementById('btn__reset').addEventListener('click', function () {
         game = new Game ();
         game.reset();
         game.startGame();
         document.querySelector('.button').style.display = "block";
+        qwerty = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k",                 "l", "z", "x", "c", "v", "b", "n", "m",];
     });
 
     qwertyKeys.forEach((key) => {
@@ -25,7 +28,6 @@
     })
 
     document.addEventListener('keyup', function (e) {
-        const qwerty = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k",                 "l", "z", "x", "c", "v", "b", "n", "m"];
         if (qwerty.includes(e.key)) {
             game.handleInteraction(e.type, undefined, e.key);
         }

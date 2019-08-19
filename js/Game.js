@@ -67,17 +67,30 @@
                     button = keyboard.find(button => button.textContent === key);
                 };
                 if (this.activePhrase.checkLetter(button.textContent)) {
+                    if (checkboxes[1].checked) {
+                        audio.playSound('keypress', 'start');
+                        setTimeout(audio.playSound, 200, 'correctLetter', 'start');
+                    }
                     button.classList.add('chosen');
                     button.setAttribute('disabled', true);
+                    qwerty.splice(qwerty.indexOf(button.textContent), 1);
                     this.activePhrase.showMatchedLetter(button.textContent);
                     this.checkForWin();
                     if (this.checkForWin()) {
+                        if (checkboxes[1].checked) {
+                            audio.playSound('gameWon', 'start');
+                        }
                         this.ready = false;
                         setTimeout(this.gameOver, 750, true);
                     }
                 } else {
+                    if (checkboxes[1].checked) {
+                        audio.playSound('keypress', 'start');
+                        setTimeout(audio.playSound, 200, 'wrongLetter', 'start');
+                    }
                     button.classList.add('wrong');
                     button.setAttribute('disabled', true);
+                    qwerty.splice(qwerty.indexOf(button.textContent), 1);
                     this.removeLife();
                 };
             }
@@ -100,6 +113,9 @@
             if (this.missed === 4 && document.querySelector('#hint p').textContent !== this.activePhrase.hint) {
                 document.getElementById('hint').style.display = "none";
             } else if (this.missed === 5) {
+                if (checkboxes[1].checked) {
+                    audio.playSound('gameLost', 'start');
+                }
                 this.ready = false;
                 setTimeout(this.gameOver, 500, false);
             }
