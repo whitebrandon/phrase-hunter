@@ -8,6 +8,7 @@
     display: none;
     box-sizing: border-box;
     width: fit-content;
+    width: -moz-fit-content;
     background: transparent;
     color: #3a3f58;
     border: 1px solid #3a3f58;
