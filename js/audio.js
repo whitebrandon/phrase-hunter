@@ -21,12 +21,12 @@ const audio = (function () {
         bufferLoader = new BufferLoader(
             context, 
             [
-              "../audio/sounds/correct_letter.wav",
-              "../audio/sounds/wrong_letter.wav",
-              "../audio/sounds/game_lost.wav",
-              "../audio/sounds/game_won.wav",
-              "../audio/sounds/keypress.wav",
-              "../audio/music/Oniku Loop2.wav",
+              "https://whitebrandon.github.io/audio/sounds/correct_letter.wav",
+              "https://whitebrandon.github.io/audio/sounds/wrong_letter.wav",
+              "https://whitebrandon.github.io/audio/sounds/game_lost.wav",
+              "https://whitebrandon.github.io/audio/sounds/game_won.wav",
+              "https://whitebrandon.github.io/audio/sounds/keypress.wav",
+              "https://whitebrandon.github.io/audio/music/Oniku Loop2.wav",
             ], 
             finishedLoading
         );
