@@ -1,0 +1,83 @@
+/***********************************************************
+ ***********************************************************
+                         THEMES
+ ***********************************************************
+ ***********************************************************/
+ /* Dark */
+
+ .dark-body {
+    background-color: black;
+    color: black;
+ }
+ .dark-header {
+    color: whitesmoke;
+ }
+
+ .dark-paragraph {
+     color: whitesmoke;
+ }
+ .dark-show {
+    background-color: #f7a964;
+    color: black;
+ }
+ .dark-chosen {
+    background-color: whitesmoke;
+    color: black;
+ }
+ .dark-wrong {
+    background-color: #4ac0d5;
+ }
+
+ /* Superhero */
+
+.super-body {
+    background-image: url('../images/superhero_bkgd.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.super-banner {
+    background-image: url('../images/batman_logo.png');
+    background-size: 400px 160px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.super-show {
+    color: black;
+    background-color: yellow;
+    border: .5px solid black;
+}
+.super-chosen {
+    background-color: blue;
+}
+.super-wrong {
+    background-color: red;
+}
+
+/* Movie */
+
+.movie-body {
+    background: url('../images/stage-curtains.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Writing */
+
+.writing-banner {
+    background-image: url('../images/pen-and-ink.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.writing-header {
+    color: #cf8729;
+}
+.writing-key {
+    border-radius: 50%;
+}
+
+/* Philosophy */
+
+/* Emoji */
+
+/* Nip/Tuck */
