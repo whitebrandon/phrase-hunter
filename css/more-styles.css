@@ -36,13 +36,14 @@ li, ol, ul {
 #hint p {
     background: rgba(210, 210, 210, .1);
     width: fit-content;
+    width: -moz-fit-content;
     margin: 16px auto;
     padding: inherit;
     border-radius: 5px;
 }
 
 #banner p {
-    padding: 0;
+    padding: 3px 6px;
 }
 
 /* Hint Button */
