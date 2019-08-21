@@ -1,0 +1,14 @@
+/* Writing */
+
+#banner {
+    background-image: url('../images/pen-and-ink.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.header {
+    color: #cf8729;
+}
+.key {
+    border-radius: 50%;
+}

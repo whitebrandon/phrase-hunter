@@ -1,0 +1,24 @@
+ /* Dark Theme */
+
+ body {
+    background-color: black;
+    color: black;
+ }
+ .header {
+    color: whitesmoke;
+ }
+
+ #banner p {
+     color: whitesmoke;
+ }
+ .show {
+    background-color: #f7a964;
+    color: black;
+ }
+ .chosen {
+    background-color: whitesmoke;
+    color: black;
+ }
+ .wrong {
+    background-color: #4ac0d5;
+ }
