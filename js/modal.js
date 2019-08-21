@@ -11,41 +11,44 @@
 
     mainContainer.insertBefore(modal, banner);
     modalBtn.setAttribute('id', 'modal-button');
-    modalBtn.innerHTML = 'AUDIO &#x2699;';
+    modalBtn.innerHTML = 'THEMES';
     modalBtn.className = 'button';
     banner.appendChild(modalBtn);
     modal.setAttribute('id', 'simple-modal');
     modal.className = 'modal';
     modal.innerHTML = `
-                    <div class="modal-content">
+                        <div class="modal-content">
                         <span class="close-button">&otimes;</span>
-                        <h2>Audio Settings</h2>
+                        <h2>Themes</h2>
                         <div class="modal-body">
-                            <label class="switch">&#127925; Music
-                                <input type="checkbox" checked>
-                                <span class="slider">ON</span>
-                            </label>
-                            <label class="switch">&#128266; Sound
-                                <input type="checkbox" checked>
-                                <span class="slider">ON</span>
-                            </label>
+                                <label class="theme">Normal
+                                    <input id="normal" type="radio" value="css/normal.css" name="theme" checked>
+                                </label>
+                                <label class="theme">Dark
+                                    <input id="dark" type="radio" value="css/dark.css" name="theme">
+                                </label>
+                                <label class="theme">Superhero
+                                    <input id="superhero" type="radio" value="css/superhero.css" name="theme">
+                                </label>
+                                <label class="theme">Movies
+                                    <input id="movie" type="radio" value="css/movie.css" name="theme">
+                                </label>
+                                <label class="theme">Music
+                                    <input id="music" type="radio" value="css/music.css" name="theme">
+                                </label>
+                                <label class="theme">Writing
+                                    <input id="writing" type="radio" value="css/writing.css" name="theme">
+                                </label>
+                                <label class="theme">Emoji
+                                    <input id="emoji" type="radio" value="css/emoji.css" name="theme">
+                                </label>
+                                <label class="theme">Philosophy
+                                    <input id="philosophy" type="radio" value="css/philosophy.css" name="theme">
+                                </label>
+                                <label class="theme">Nip/Tuck</label>
+                                    <input id="nip-tuck" type="radio" value="css/nip_tuck.css" name="theme">
                         </div>
-                    </div>`;
-
-    /**
-     * Adds functionality to toggle switches in Audio Setting modal window
-     */
-    document.querySelectorAll('.switch input').forEach(input => {
-        input.addEventListener('click', function toggleSwith (e) {
-            if (e.target.checked === true) {
-                e.target.nextElementSibling.innerHTML = "ON";
-                e.target.nextElementSibling.style.textAlign = "left";
-            } else {
-                e.target.nextElementSibling.innerHTML = "OFF";
-                e.target.nextElementSibling.style.textAlign = "right";
-            }
-        });
-    });
+                    </div>`;               
 
     /**
      * Listen for click on #modal-button and opens modal window

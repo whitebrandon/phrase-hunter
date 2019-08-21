@@ -1,8 +1,4 @@
 const audio = (function () {
-    const music = {
-        'background' : 5,
-    };
-
     const sounds = {
         'correctLetter' : 0,
         'wrongLetter' : 1,
@@ -35,15 +31,15 @@ const audio = (function () {
     }
     function finishedLoading (bufferedList) {
         bufferList = bufferedList;
-        createAudio();
+        // createAudio();
         // music.background.start();
     }
-    function createAudio () {
+/*     function createAudio () {
         music.background = context.createBufferSource();
         music.background.buffer = bufferList[5];
         music.background.loop = true;
         music.background.connect(context.destination);
-    }
+    } */
 
     window.onload = init;
 

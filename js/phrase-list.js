@@ -112,7 +112,7 @@ const phrase = [
         hint: `2006 fantasy war drama written and directed by Guillermo del Toro`
     },
     {
-        phrase: `Pyscho`,
+        phrase: `Psycho`,
         category: `movie titles`,
         hint: `1960 psychological horror film directed by Alfred Hitchcock`
     },
