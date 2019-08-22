@@ -31,15 +31,7 @@ const audio = (function () {
     }
     function finishedLoading (bufferedList) {
         bufferList = bufferedList;
-        // createAudio();
-        // music.background.start();
     }
-/*     function createAudio () {
-        music.background = context.createBufferSource();
-        music.background.buffer = bufferList[5];
-        music.background.loop = true;
-        music.background.connect(context.destination);
-    } */
 
     window.onload = init;
 
@@ -47,7 +39,10 @@ const audio = (function () {
         playSound: function (sound, option) {
             let source = context.createBufferSource();
             source.buffer = bufferList[sounds[sound]];
-            source.connect(context.destination);
+            const gainNode = context.createGain();
+            gainNode.gain.value = 7.5;
+            source.connect(gainNode);
+            gainNode.connect(context.destination);
             source[option]();
         }
     }

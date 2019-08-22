@@ -1,75 +1,92 @@
-
-/******************************************
- *************** VARIABLES ****************
- ******************************************/
-
 'use strict';
 
-    const modal = document.createElement('div');
-    const modalBtn = document.createElement('button');
+    /******************************************
+     *************** VARIABLES ****************
+    ******************************************/
+
     const mainContainer = document.querySelector('.main-container');
+    const modal = {modal: "", modalBtn: "", modalContent: "", span: "", modalTitle: "", modalBody: ""}
+    const elements = ['div', 'button', 'div', 'span', 'h2', 'div'];
+    const themeNames = ["normal", "dark", "superhero", "movies", "music", "writing", "emoji", "philosopy", "life_cycle"];
+    
+    /**
+     * Appends child elements to parent element
+     * @param {Element} parent Parent node
+     * @param  {...any} children An array of child elements to be appended
+     */
+    const append = (parent, ...children) => children.forEach(child => parent.appendChild(child));
+    /**
+     * IEFE | Creates elements using modal Object and tags from elements Array
+     */
+    (() => {
+        let i = 0;
+        for (let prop in modal) {
+        modal[prop] = document.createElement(elements[i]);
+        i++;
+        }
+    })();
+    /**
+     * Adds radio buttons to modal window
+     * @param {string} themeName Name of page theme linked to button
+     */
+    const addPageThemes = (themeName) => {
+        const label = document.createElement('label');
+        const radio = document.createElement('input');
+        label.className = "theme";
+        themeName !== "life_cycle" ? label.textContent = themeName.toLowerCase() : label.textContent = "life cycle";
+        append(label, radio);
+        const attributes = [{name: "id", value: themeName}, {name: "type", value: "radio"}, {name: "name", value: "theme"}];
+        attributes.forEach(attribute => radio.setAttribute(attribute.name, attribute.value));
+        append(modal.modalBody, label);
+    }
+    /**
+     * Sets the class and innerHTML for an element
+     * @param {Element} element The element to be altered
+     * @param {string} className The class to be added
+     * @param {string} innerHTML The html text node to be added
+     */
+    const addClassAndInner = (element, className, innerHTML) => {
+        element['className'] = className;
+        element['innerHTML'] = innerHTML;
+    }
 
-    mainContainer.insertBefore(modal, banner);
-    modalBtn.setAttribute('id', 'modal-button');
-    modalBtn.innerHTML = 'THEMES';
-    modalBtn.className = 'button';
-    banner.appendChild(modalBtn);
-    modal.setAttribute('id', 'simple-modal');
-    modal.className = 'modal';
-    modal.innerHTML = `
-                        <div class="modal-content">
-                        <span class="close-button">&otimes;</span>
-                        <h2>Themes</h2>
-                        <div class="modal-body">
-                                <label class="theme">Normal
-                                    <input id="normal" type="radio" value="css/normal.css" name="theme" checked>
-                                </label>
-                                <label class="theme">Dark
-                                    <input id="dark" type="radio" value="css/dark.css" name="theme">
-                                </label>
-                                <label class="theme">Superhero
-                                    <input id="superhero" type="radio" value="css/superhero.css" name="theme">
-                                </label>
-                                <label class="theme">Movies
-                                    <input id="movie" type="radio" value="css/movie.css" name="theme">
-                                </label>
-                                <label class="theme">Music
-                                    <input id="music" type="radio" value="css/music.css" name="theme">
-                                </label>
-                                <label class="theme">Writing
-                                    <input id="writing" type="radio" value="css/writing.css" name="theme">
-                                </label>
-                                <label class="theme">Emoji
-                                    <input id="emoji" type="radio" value="css/emoji.css" name="theme">
-                                </label>
-                                <label class="theme">Philosophy
-                                    <input id="philosophy" type="radio" value="css/philosophy.css" name="theme">
-                                </label>
-                                <label class="theme">Nip/Tuck</label>
-                                    <input id="nip-tuck" type="radio" value="css/nip_tuck.css" name="theme">
-                        </div>
-                    </div>`;               
-
+    mainContainer.insertBefore(modal.modal, banner);
+    append(banner, modal.modalBtn);
+    append(modal.modal, modal.modalContent);
+    append(modal.modalContent, modal.span, modal.modalTitle, modal.modalBody); 
+    modal.modalBtn.setAttribute('id', 'modal-button');
+    addClassAndInner(modal.modalBtn, "button", "THEMES");
+    modal.modal.setAttribute('id', 'simple-modal');
+    modal.modal.className = 'modal';
+    modal.modalContent.className = 'modal-content';
+    addClassAndInner(modal.span, "close-button", "&otimes;");
+    modal.modalBody.className = 'modal-body';
+    modal.modalTitle.textContent = "Themes";
+    
+    for (let i = 0; i < themeNames.length; i++) {
+        addPageThemes(themeNames[i]);
+    }
+    
     /**
      * Listen for click on #modal-button and opens modal window
      */
-    modalBtn.addEventListener('click', function openModal () {
-        modal.style.display = 'block';
+    modal.modalBtn.addEventListener('click', function openModal () {
+        modal.modal.style.display = 'block';
         game.ready = false;
     });
     /**
      * Listen for click on span.close-button and closes modal window
      */
     document.querySelector('.close-button').addEventListener('click', function closeModal () {
-        modal.style.display = 'none';
+        modal.modal.style.display = 'none';
         game.ready = true;
     });
     /**
      * Listen for click on #simple-modal and closes modal window
      */
     window.addEventListener('click', function clickOutside (e) {
-        if (e.target === modal) {
-            modal.style.display = 'none';
+        if (e.target === modal.modal) {
+            modal.modal.style.display = 'none';
             game.ready = true;
         }
     });

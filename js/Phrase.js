@@ -22,11 +22,7 @@
                     const refIndex = spaces.indexOf(reference);
                     const breakSpot = spaces[refIndex - 1];
                     if (breakSpot) {
-                            if (breakSpot.classList.contains('break')) {
-                                spaces[refIndex].classList.add('break');
-                            } else {
-                                breakSpot.classList.add('break');
-                            }
+                        breakSpot.classList.contains('break') ? spaces[refIndex].classList.add('break') : breakSpot.classList.add('break');
                     } else { break; }
                 }
             };
@@ -97,7 +93,7 @@
             document.querySelector('#hint button').textContent = "hint";
             document.getElementById('get-hint').addEventListener('click', function buyHint () {
                 document.getElementById('get-hint').removeEventListener('click', buyHint);
-                if (soundBtn.children[0].checked) {
+                if (soundBtn.checked) {
                     audio.playSound('keypress', 'start');
                 }
                 const heart = document.querySelectorAll('#scoreboard img[src="images/liveHeart.png"]');

@@ -34,11 +34,7 @@
             window.addEventListener('resize', function () {
                 game.activePhrase.addLineBreak();
                 const modal = this.document.getElementById('modal-button');
-                if (this.innerWidth <= 1024) {
-                    modal.innerHTML = "&#9776;";
-                } else {
-                    modal.innerHTML = 'AUDIO &#x2699;';
-                }
+                this.innerWidth <= 1024 ? modal.innerHTML = "&#9776;" : modal.textContent = "THEME";
             }, false);
         }
         /**
@@ -67,7 +63,7 @@
                     button = keyboard.find(button => button.textContent === key);
                 };
                 if (this.activePhrase.checkLetter(button.textContent)) {
-                    if (soundBtn.children[0].checked) {
+                    if (soundBtn.checked) {
                         audio.playSound('keypress', 'start');
                         setTimeout(audio.playSound, 200, 'correctLetter', 'start');
                     }
@@ -77,14 +73,14 @@
                     this.activePhrase.showMatchedLetter(button.textContent);
                     this.checkForWin();
                     if (this.checkForWin()) {
-                        if (soundBtn.children[0].checked) {
+                        if (soundBtn.checked) {
                             audio.playSound('gameWon', 'start');
                         }
                         this.ready = false;
                         setTimeout(this.gameOver, 750, true);
                     }
                 } else {
-                    if (soundBtn.children[0].checked) {
+                    if (soundBtn.checked) {
                         audio.playSound('keypress', 'start');
                         setTimeout(audio.playSound, 200, 'wrongLetter', 'start');
                     }
@@ -110,10 +106,10 @@
         removeLife () {
             document.querySelectorAll('#scoreboard img')[this.missed].setAttribute("src", "images/lostHeart.png");
             this.missed += 1;
-            if (this.missed === 4 && document.querySelector('#hint p').textContent !== this.activePhrase.hint) {
+            if (this.missed === 4 && document.querySelector('#hint p').innerHTML !== this.activePhrase.hint) {
                 document.getElementById('hint').style.display = "none";
             } else if (this.missed === 5) {
-                if (soundBtn.children[0].checked) {
+                if (soundBtn.checked) {
                     audio.playSound('gameLost', 'start');
                 }
                 this.ready = false;
@@ -154,7 +150,7 @@
             } else {
                 game.postGameOverMessage(losingMessages, "lose");
             }
-            modalBtn.style.display = "none";
+            modal.modalBtn.style.display = "none";
             audioSettings.forEach(label => label.style.position = "relative");
         }
         /**
