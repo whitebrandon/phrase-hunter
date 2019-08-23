@@ -1,0 +1,29 @@
+/* Writing */
+
+body {
+    background: url('../images/writing_bkgd.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+#banner {
+    background-image: url('../images/pen-and-ink.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+#category p,
+#banner p,
+#get-hint {
+    color: #cf8729;
+    background: none;
+}
+#banner p {
+    font-size: 1.5em;
+}
+.header {
+    color: #cf8729;
+}
+.key {
+    border-radius: 50%;
+}

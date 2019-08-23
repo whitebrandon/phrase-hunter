@@ -1,0 +1,35 @@
+ /* Dark Theme */
+
+ body {
+    background-color: black;
+    color: black;
+ }
+ .header,
+ #modal-button {
+    color: whitesmoke;
+ }
+
+ #banner p,
+ #hint p {
+     color: whitesmoke;
+     background-color: transparent;
+ }
+
+ .switch,
+ #category p,
+ #get-hint {
+    background-color: rgba(210, 210, 210, .1);
+    color: whitesmoke;
+ }
+
+ .show {
+    background-color: #f7a964;
+    color: black;
+ }
+ .chosen {
+    background-color: slategrey;
+    color: black;
+ }
+ .wrong {
+    background-color: #4ac0d5;
+ }
