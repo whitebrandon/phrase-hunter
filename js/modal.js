@@ -7,7 +7,7 @@
     const mainContainer = document.querySelector('.main-container');
     const modal = {modal: "", modalBtn: "", modalContent: "", span: "", modalTitle: "", modalBody: ""}
     const elements = ['div', 'button', 'div', 'span', 'h2', 'div'];
-    const themeNames = ["normal", "dark", "superhero", "movies", "music", "writing", "emoji", "philosopy", "life_cycle"];
+    const themeNames = ["normal", "dark", "superhero", "movies", "music", "writing", "emoji", "philosophy", "life_cycle"];
     
     /**
      * Appends child elements to parent element
