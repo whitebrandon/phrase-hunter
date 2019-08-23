@@ -42,6 +42,7 @@
          */
         startGame () {
             overlay.style.display = "none";
+            audioSettings.forEach(label => label.style.position = "static");
             this.activePhrase = this.getRandomPhrase();
             this.activePhrase.addPhraseToDisplay();
             this.activePhrase.addCategoryToDisplay();
