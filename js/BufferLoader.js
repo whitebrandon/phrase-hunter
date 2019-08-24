@@ -1,3 +1,12 @@
+/******************************************
+Treehouse Techdegree:
+FSJS project 4 - OOP Game App
+Name: Brandon White
+Date of Last Modification: 23/08/2019
+BufferLoader.js
+******************************************/
+
+'use strict';
 
 class BufferLoader {
     // Load buffer asynchronously

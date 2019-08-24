@@ -1,6 +1,10 @@
-/* Treehouse FSJS Techdegree
- * Project 4 - OOP Game App
- * Phrase.js */
+/******************************************
+Treehouse Techdegree:
+FSJS project 4 - OOP Game App
+Name: Brandon White
+Date of Last Modification: 23/08/2019
+Phrase.js
+******************************************/
 
 'use strict';
 
