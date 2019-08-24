@@ -30,7 +30,7 @@ The objective of this project was to build an interactive game app called __Phra
             * **showMatchedLetter()** - Takes one parameter: a string | Displays passed letter on screen after a match is found
     * The **Game** class:
         * The **constructor** receives no parameters, but initializes the following properties:
-            * **missed**: tracks the number of missed guesses by the player | Initial value is ```javascript 0 ```
+            * **missed**: tracks the number of missed guesses by the player | Initial value is `0`
             * **phrases**: holds an array of all the phrase objects in the phrase variable contained in __phrase-list.js__
             * **activePhrase**: holds the phrase currently in play | Intialized as **null**
             * **ready**: a boolean that holds the state of the game | Intialized as **false**
