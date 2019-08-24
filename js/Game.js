@@ -79,6 +79,7 @@
                         }
                         this.ready = false;
                         setTimeout(this.gameOver, 750, true);
+                        setTimeout(this.reset, 700);
                     }
                 } else {
                     if (soundBtn.checked) {
@@ -115,6 +116,7 @@
                 }
                 this.ready = false;
                 setTimeout(this.gameOver, 500, false);
+                setTimeout(this.reset, 450);
             }
         }
         /**

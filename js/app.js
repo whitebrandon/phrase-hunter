@@ -58,7 +58,6 @@
             context.resume();
         }
         game = new Game ();
-        game.reset();
         game.startGame();
         document.querySelector('.button').style.display = "block";
         qwerty = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m",];
