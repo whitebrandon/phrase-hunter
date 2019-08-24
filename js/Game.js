@@ -8,8 +8,24 @@ Game.js
 
 'use strict';
 
+    /**
+     * Game class declaration
+     * @class
+     * @name Game
+     */
     class Game {
+        /**
+         * Represents a game
+         * @constructor
+         */
         constructor () {
+            /**
+             * Game class property declarations
+             * @property {number} number of incorrect player guesses
+             * @property {Array} list of phrases to be used in game
+             * @property {null} phrase currently in play
+             * @property {boolean}  active state of the game
+             */
             this.missed = 0;
             this.phrases = this.createPhrases();
             this.activePhrase = null;
@@ -32,7 +48,11 @@ Game.js
             return this.phrases[Math.floor(Math.random() * this.phrases.length)];
         }
         /**
-         * Adds listener to window
+         * Adds listener to resizing of window object which
+         * calls for the active phrase to be evaluated for line breaks
+         * so that phrase remains responsive, while not splitting one word into multiples.
+         * If width of screen is lt or eq to 1024 px, the THEME button's text changes to
+         * a trigram 
          */
         onScreenResize () {
             window.addEventListener('resize', function () {
@@ -42,7 +62,13 @@ Game.js
             }, false);
         }
         /**
-         * Begins game by selecting a random phrase and displaying it to the user
+         * Begins the game by removing the starting overlay, 
+         * selecting a random phrase, hiding it, and displaying it on the page,
+         * adding the category of the phrase to the display,
+         * adding a hint for the phrase to the display (while hiding it),
+         * adding instructions to the display,
+         * calling for the active phrase to be evaluated for line breaks,
+         * and setting the state of the game to active
          */
         startGame () {
             overlay.style.display = "none";
@@ -57,6 +83,12 @@ Game.js
         }
         /**
          * Handles onscreen keyboard button clicks and keypresses
+         * Checks if keyed letter or clicked letter matches letter in phrase,
+         * disables key, and if letter matches, plays sound fx (if not turned off),
+         * and checks for win. 
+         * If game is won, plays sound fx (if not turned off),
+         * sets the state of game to inactive, then calls gameOver and reset.
+         * If letter doesn't match, plays sound fx (if not turned off).
          * @param {Event.type} type - the type of event that triggered function
          * @param {HTMLButtonElement} button - the clicked button element
          * @param {keypress value} key - the value of the key that was pressed
@@ -105,8 +137,9 @@ Game.js
             return document.getElementsByClassName('hide').length > 0 ? false : true;
         }
         /**
-         * Increases the value of the missed property
          * Removes a life from the scoreboard
+         * Increases the value of the missed property
+         * Removes hint option if not already utilized by fourth miss
          * Checks if a player has remaining lives and ends game if player is out
          */
         removeLife () {
@@ -142,6 +175,8 @@ Game.js
         }
         /**
          * Displays game over message
+         * Sets audio buttons to relative display so that user can play/pause music 
+         * on game over screen without starting a new game first
          * @param {boolean} gameWon - whether or not the user won the game
          */
         gameOver (gameWon) {
@@ -168,7 +203,12 @@ Game.js
                   .innerHTML = `win by guessing the phrase before losing all of your hearts`;
         }
         /**
-         * Resets game to initial state
+         * Resets game to initial state:
+         * Removes the phrase from the window
+         * Enables and resets all qwerty keys
+         * Resets live hearts
+         * Resets overlay
+         * Removes the instructions && the category and hint sections from the window
          */
         reset () {
             document.querySelectorAll('#phrase li').forEach(li => li.parentNode.removeChild(li));

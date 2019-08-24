@@ -8,14 +8,37 @@ Phrase.js
 
 'use strict';
 
+    /**
+     * Phrase class declaration
+     * @class
+     * @name Phrase
+     */
     class Phrase {
+        /**
+         * Represents a phrase
+         * @constructor
+         */
         constructor (phrase, category, hint) {
+            /**
+             * Game class property declarations
+             * @property {string} phrase phrase
+             * @property {string} category [fictional characters, movie titles, song lyrics, popular idioms, 
+             *                              philosophical quotes, before and after, famous authors]
+             * @property {string} hint personal clue about the phrase
+             */
             this.phrase = phrase.toLowerCase();
             this.category = category.toLowerCase();
             this.hint = hint.toLowerCase();
         }
         /** 
          * Adds line break if phrase is longer than game board
+         * Checks to see if an li.space is outside of the window,
+         * and adds a line break to the li.space before it.
+         * If the li.space before it has already been broken to the next line,
+         * (meaning the word is so long it extends past the window by itself)
+         * a line break is added to the space outside of the window.
+         * Finally, if the last word of the phrase extends past the window, 
+         * it is broken to the next line
          */
         addLineBreak () {
             const spaces = Array.from(document.querySelectorAll('#phrase li.space'));
@@ -55,7 +78,7 @@ Phrase.js
             this.addLineBreak();
         }
         /**
-         * Creates a div el, give it an attribute, a child par, and inserts it into the DOM
+         * Creates a div el, gives it an attribute, a child par, and inserts it into the DOM
          * @param {array} el List of elements to be created
          * @param {array} attr List of attributes to be added to elements
          * @param {array} value List of values that attributes need to be set to
@@ -87,7 +110,7 @@ Phrase.js
                                   </br><span style="font-weight:500">${this.category}</span>`;
         }
         /**
-         * Adds hint to game board, but hides it within an Click event
+         * Adds hint to game board, but hides it within a click event
          */
         addHintToDisplay () {
             this.createSection(["div", "p", "button"], ["id", undefined, "id"],
@@ -96,33 +119,37 @@ Phrase.js
                     .textContent = "click the button below to trade a heart for a hint";
             document.querySelector('#hint button').textContent = "hint";
             document.getElementById('get-hint').addEventListener('click', function buyHint () {
+                /**
+                 * Adds listener to hint button
+                 * On click: Disabled own event listener for future use,
+                 * plays sound fx (if sound not turned off), shows hint,
+                 * and removes live heart
+                 */
                 document.getElementById('get-hint').removeEventListener('click', buyHint);
                 if (soundBtn.checked) {
                     audio.playSound('keypress', 'start');
                 }
-                const heart = document.querySelectorAll('#scoreboard img[src="images/liveHeart.png"]');
-                if (heart.length > 1) {
-                    game.activePhrase.showHint();
-                    game.removeLife();
-                }
+                game.activePhrase.showHint();
+                game.removeLife();
             })
         }
         /**
-         * Shows hint and kills one heart
+         * Shows hint
          */
         showHint () {
             document.querySelector('#hint p').innerHTML = this.hint;
         }
         /**
          * Checks if passed letter is in phrase
-         * @param {string} letter - letter to check
+         * @param {string} letter the letter to check
+         * @return {boolean} if letter a match ? true : false 
          */
         checkLetter (letter) {
             return this.phrase.includes(letter);
         }
         /**
          * Displays passed letter on screen after a match is found
-         * @param {string} letter - letter to display
+         * @param {string} letter the letter to display
          */
         showMatchedLetter (letter) {
             const list = document.getElementsByClassName(letter);
