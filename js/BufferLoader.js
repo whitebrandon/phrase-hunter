@@ -27,7 +27,6 @@ class BufferLoader {
          * @property {array} urlList list of absolute paths for sound fx
          * @property {function} callback function to call after audio files have been received and decoded
          * @property {array} bufferList starts off empty, but will end up holding all sound fx
-         * @property {number} loadCount number of audio files that have been received and decoded
          */
         this.context = context;
         this.urlList = urlList;

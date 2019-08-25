@@ -175,8 +175,6 @@ Game.js
         }
         /**
          * Displays game over message
-         * Sets audio buttons to relative display so that user can play/pause music 
-         * on game over screen without starting a new game first
          * @param {boolean} gameWon - whether or not the user won the game
          */
         gameOver (gameWon) {
@@ -193,7 +191,7 @@ Game.js
                 game.postGameOverMessage(losingMessages, "lose");
             }
             modal.modalBtn.style.display = "none";
-            audioSettings.forEach(label => label.style.position = "relative");
+            background.pause();
         }
         /**
          * Adds instructions to display
