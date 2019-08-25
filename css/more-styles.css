@@ -22,6 +22,12 @@ li, ol, ul {
     white-space: nowrap;
 }
 
+.letter {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
 .break {
     display: block;
 }

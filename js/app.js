@@ -74,7 +74,6 @@ app.js
          */
         background.currentTime = 0;
         if (musicBtn.checked) {
-            console.log(background.currentTime);
             background.play();
             context.resume();
         }
