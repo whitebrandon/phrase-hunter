@@ -1,3 +1,11 @@
+ /******************************************
+Treehouse Techdegree:
+FSJS project 4 - OOP Game App
+Name: Brandon White
+Date of Last Modification: 25/08/2019
+more-styles.css
+******************************************/
+
 /* ======================================
              Secondary Styles 
    ====================================== */
@@ -12,6 +20,12 @@ body {
 
 li, ol, ul {
     white-space: nowrap;
+}
+
+.letter {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
 }
 
 .break {
@@ -94,10 +108,10 @@ li, ol, ul {
             MEDIA QUERIES
  ***********************************/
 
- @media screen and (max-height: 768px) {
-    /* ↓ keeps div#banner from disappearing on wrap */
-    .main-container {
-        justify-content: normal;
-    }
+    @media screen and (max-height: 768px) {
+        /* ↓ keeps div#banner from disappearing on wrap */
+        .main-container {
+            justify-content: normal;
+        }
 
- }
+    }

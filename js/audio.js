@@ -1,3 +1,17 @@
+/******************************************
+Treehouse Techdegree:
+FSJS project 4 - OOP Game App
+Name: Brandon White
+Date of Last Modification: 23/08/2019
+audio.js
+******************************************/
+
+'use strict';
+
+/**
+ * IEFE | Creates sound object with five properties:
+ * One for each sound fx in game, set to an index
+ */
 const audio = (function () {
     const sounds = {
         'correctLetter' : 0,
@@ -10,6 +24,10 @@ const audio = (function () {
     let bufferLoader = null;
     let bufferList = [];
 
+    /**
+     * Establishes a new AudioContext to the window object
+     * Instatiates a new BufferLoader class
+     */
     function init () {
         window.AudioContext = window.AudioContext || window.webkitAudioContext;
         context = new AudioContext();
@@ -36,6 +54,16 @@ const audio = (function () {
     window.onload = init;
 
     return {
+        /**
+         * Returns method to play audio on command:
+         * Creates audio buffer to hold decoded sound fx,
+         * sets source for each sound,
+         * increases the volume for each sound,
+         * connects the source to the volume increase,
+         * then connects the volume increase to the user's speakers
+         * @param {url} sound the sound file
+         * @param {string} option start or stop sound
+         */
         playSound: function (sound, option) {
             let source = context.createBufferSource();
             source.buffer = bufferList[sounds[sound]];

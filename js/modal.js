@@ -1,13 +1,21 @@
+/******************************************
+Treehouse Techdegree:
+FSJS project 4 - OOP Game App
+Name: Brandon White
+Date of Last Modification: 23/08/2019
+modal.js
+******************************************/
+
 'use strict';
 
     /******************************************
      *************** VARIABLES ****************
-    ******************************************/
+     ******************************************/
 
     const mainContainer = document.querySelector('.main-container');
     const modal = {modal: "", modalBtn: "", modalContent: "", span: "", modalTitle: "", modalBody: ""}
     const elements = ['div', 'button', 'div', 'span', 'h2', 'div'];
-    const themeNames = ["normal", "dark", "superhero", "movies", "music", "writing", "emoji", "philosophy", "life_cycle"];
+    const themeNames = ["light", "dark", "superhero", "movies", "music", "writing", "emoji", "philosophy", "life_cycle"];
     
     /**
      * Appends child elements to parent element
