@@ -2,7 +2,7 @@
 Treehouse Techdegree:
 FSJS project 4 - OOP Game App
 Name: Brandon White
-Date of Last Modification: 23/08/2019
+Date of Last Modification: 28/08/2019
 modal.js
 ******************************************/
 
@@ -24,7 +24,7 @@ modal.js
      */
     const append = (parent, ...children) => children.forEach(child => parent.appendChild(child));
     /**
-     * IEFE | Creates elements using modal Object and tags from elements Array
+     * IIFE | Creates elements using modal Object and tags from elements Array
      */
     (() => {
         let i = 0;
