@@ -2,7 +2,7 @@
 Treehouse Techdegree:
 FSJS project 4 - OOP Game App
 Name: Brandon White
-Date of Last Modification: 23/08/2019
+Date of Last Modification: 28/08/2019
 Phrase.js
 ******************************************/
 
@@ -15,30 +15,40 @@ Phrase.js
      */
     class Phrase {
         /**
-         * Represents a phrase
-         * @constructor
+         * Game class property declarations
+         * @property {string} phrase phrase
+         * @property {string} category [fictional characters, movie titles, song lyrics, popular idioms, philosophical quotes, before and after, famous authors]
+         * @property {string} hint personal clue about the phrase
          */
         constructor (phrase, category, hint) {
-            /**
-             * Game class property declarations
-             * @property {string} phrase phrase
-             * @property {string} category [fictional characters, movie titles, song lyrics, popular idioms, 
-             *                              philosophical quotes, before and after, famous authors]
-             * @property {string} hint personal clue about the phrase
-             */
             this.phrase = phrase.toLowerCase();
             this.category = category.toLowerCase();
             this.hint = hint.toLowerCase();
         }
+	      /**
+         * Display phrase on game board
+         */
+        addPhraseToDisplay () {
+            const phraseList = document.querySelector('#phrase ul');
+            for (let i = 0; i < this.phrase.length; i++) {
+                const listItem = document.createElement('li');
+                if (/^\w{1}$/.test(this.phrase[i])) {
+                    listItem.classList.add('hide', 'letter', this.phrase[i]);
+                    listItem.textContent = this.phrase[i];
+                } else if (/^\s{1}$/.test(this.phrase[i])) {
+                    listItem.className = 'space';
+                }
+                phraseList.appendChild(listItem)
+            }
+            this.addLineBreak();
+        }
         /** 
          * Adds line break if phrase is longer than game board
-         * Checks to see if an li.space is outside of the window,
-         * and adds a line break to the li.space before it.
-         * If the li.space before it has already been broken to the next line,
+         * Checks to see if an li.space is beyond window, and adds a line break to the li.space before it.
+         * If the li.space before already broken to next line,
          * (meaning the word is so long it extends past the window by itself)
-         * a line break is added to the space outside of the window.
-         * Finally, if the last word of the phrase extends past the window, 
-         * it is broken to the next line
+         * a line break is added to li.space beyond window.
+         * Finally, if last word of the phrase extends beyond window, it is broken to new line
          */
         addLineBreak () {
             const spaces = Array.from(document.querySelectorAll('#phrase li.space'));
@@ -50,7 +60,7 @@ Phrase.js
                     const breakSpot = spaces[refIndex - 1];
                     if (breakSpot) {
                         breakSpot.classList.contains('break') ? spaces[refIndex].classList.add('break') : breakSpot.classList.add('break');
-                    } else { break; }
+                    } else break;
                 }
             };
             if (document.querySelector('#phrase li:last-child').offsetLeft + 65 >= innerWidth &&
@@ -59,26 +69,25 @@ Phrase.js
             }
         }
         /**
-         * Display phrase on game board
+         * Checks if passed letter is in phrase
+         * @param {string} letter the letter to check
+         * @return {boolean} if letter a match ? true : false 
          */
-        addPhraseToDisplay () {
-            const phraseList = document.querySelector('#phrase ul');
-            for (let i = 0; i < this.phrase.length; i++) {
-                if (/^\w{1}$/.test(this.phrase[i])) {
-                    const listItem = document.createElement('li');
-                    listItem.classList.add('hide', 'letter', this.phrase[i]);
-                    listItem.textContent = this.phrase[i];
-                    phraseList.appendChild(listItem);
-                } else if (/^\s{1}$/.test(this.phrase[i])) {
-                    const listItem = document.createElement('li')
-                    listItem.className = 'space';
-                    phraseList.appendChild(listItem)
-                }
-            }
-            this.addLineBreak();
+        checkLetter (letter) {
+            return this.phrase.includes(letter);
         }
         /**
-         * Creates a div el, gives it an attribute, a child par, and inserts it into the DOM
+         * Displays passed letter on screen after a match is found
+         * @param {string} letter the letter to display
+         */
+        showMatchedLetter (letter) {
+            const list = document.getElementsByClassName(letter);
+            for (let item of list) {
+                item.classList.replace('hide', 'show');
+            }
+        }
+        /**
+         * Creates a div, gives it an attribute, a child par, and inserts it into the DOM
          * @param {array} el List of elements to be created
          * @param {array} attr List of attributes to be added to elements
          * @param {array} value List of values that attributes need to be set to
@@ -118,43 +127,23 @@ Phrase.js
             document.querySelector('#hint p')
                     .textContent = "click the button below to trade a heart for a hint";
             document.querySelector('#hint button').textContent = "hint";
-            document.getElementById('get-hint').addEventListener('click', function buyHint () {
-                /**
-                 * Adds listener to hint button
-                 * On click: Disabled own event listener for future use,
-                 * plays sound fx (if sound not turned off), shows hint,
-                 * and removes live heart
-                 */
-                document.getElementById('get-hint').removeEventListener('click', buyHint);
-                if (soundBtn.checked) {
-                    audio.playSound('keypress', 'start');
-                }
-                game.activePhrase.showHint();
-                game.removeLife();
-            })
+            document.getElementById('get-hint').addEventListener('click', this.buyHint)
+        }
+	      /**
+         * Disables hint button's event listener for future use,
+         * plays sound fx (if sound not turned off), shows hint,
+         * and removes live heart
+         */
+        buyHint () {
+            document.getElementById('get-hint').removeEventListener('click', this.buyHint);
+            checkSound(["keypress"], "start");
+            game.activePhrase.showHint();
+            game.removeLife();
         }
         /**
          * Shows hint
          */
         showHint () {
             document.querySelector('#hint p').innerHTML = this.hint;
-        }
-        /**
-         * Checks if passed letter is in phrase
-         * @param {string} letter the letter to check
-         * @return {boolean} if letter a match ? true : false 
-         */
-        checkLetter (letter) {
-            return this.phrase.includes(letter);
-        }
-        /**
-         * Displays passed letter on screen after a match is found
-         * @param {string} letter the letter to display
-         */
-        showMatchedLetter (letter) {
-            const list = document.getElementsByClassName(letter);
-            for (let item of list) {
-                item.classList.replace('hide', 'show');
-            }
         }
     }
