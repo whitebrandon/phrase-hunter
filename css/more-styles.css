@@ -71,6 +71,7 @@ li, ol, ul {
     height: 34px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
+    box-shadow: inset 2px 2px 5px #000;
     margin: 0 12px;
     padding: 4px 0 12px;
     z-index: 0;

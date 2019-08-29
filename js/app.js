@@ -45,7 +45,7 @@ app.js
      */
     audioSettings.forEach(label => {
         label.children[0].addEventListener('change', function () {
-            !label.children[0].checked ? label.style.boxShadow = "inset 2px 2px 5px black" : label.style.boxShadow = "none";
+            label.children[0].checked ? label.style.boxShadow = "inset 2px 2px 5px black" : label.style.boxShadow = "none";
         })
     })
     const musicBtn = audioSettings[0].firstElementChild;
