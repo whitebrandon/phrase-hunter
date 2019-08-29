@@ -40,6 +40,14 @@ app.js
     createAudioToggles("&#128266; Sound");
 
     const audioSettings = Array.from(document.querySelectorAll('.switch'));
+    /**
+     * Adds indicator to buttons when audio is turned off
+     */
+    audioSettings.forEach(label => {
+        label.children[0].addEventListener('change', function () {
+            !label.children[0].checked ? label.style.boxShadow = "inset 2px 2px 5px black" : label.style.boxShadow = "none";
+        })
+    })
     const musicBtn = audioSettings[0].firstElementChild;
     const soundBtn = audioSettings[1].firstElementChild;
     /**
