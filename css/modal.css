@@ -47,7 +47,7 @@ modal.css
     position: relative;
     background: var(--color-neutral);
     width: 376px;
-    margin: 15% auto;
+    margin: 5% auto;
     padding: 1em 0;
     box-shadow: 0 5px 8px 0 rgba(0,0,0,.2),
                 0 7px 20px 0 rgba(0,0,0,.17);
@@ -90,7 +90,7 @@ modal.css
 }
 
 .theme:hover {
-    background: red;
+    background: white;
 }
 
 input[type="radio"] {

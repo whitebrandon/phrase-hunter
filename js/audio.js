@@ -2,7 +2,7 @@
 Treehouse Techdegree:
 FSJS project 4 - OOP Game App
 Name: Brandon White
-Date of Last Modification: 28/08/2019
+Date of Last Modification: 06/09/2019
 audio.js
 ******************************************/
 
@@ -35,11 +35,11 @@ audio.js
             bufferLoader = new BufferLoader(
                 context, 
                 [
-                "https://whitebrandon.github.io/audio/sounds/correct_letter.wav",
-                "https://whitebrandon.github.io/audio/sounds/wrong_letter.wav",
-                "https://whitebrandon.github.io/audio/sounds/game_lost.wav",
-                "https://whitebrandon.github.io/audio/sounds/game_won.wav",
-                "https://whitebrandon.github.io/audio/sounds/keypress.wav",
+                    "https://whitebrandon.github.io/audio/sounds/correct_letter.wav",
+                    "https://whitebrandon.github.io/audio/sounds/wrong_letter.wav",
+                    "https://whitebrandon.github.io/audio/sounds/game_lost.wav",
+                    "https://whitebrandon.github.io/audio/sounds/game_won.wav",
+                    "https://whitebrandon.github.io/audio/sounds/keypress.wav",
                 ], 
                 finishedLoading
             );
@@ -58,7 +58,7 @@ audio.js
              * Creates audio buffer to hold decoded sound fx,
              * sets source for each sound,
              * increases the volume for each sound,
-             * connects the source to gain to user's speakers
+             * connects the source to gain then gain to user's speakers
              * @param {url} sound the sound file
              * @param {string} option start or stop sound
              */
