@@ -2,7 +2,7 @@
 Treehouse Techdegree:
 FSJS project 4 - OOP Game App
 Name: Brandon White
-Date of Last Modification: 28/08/2019
+Date of Last Modification: 06/09/2019
 BufferLoader.js
 ******************************************/
 
@@ -13,9 +13,7 @@ BufferLoader.js
      * @class
      * @name BufferLoader
      */
-    class BufferLoader {
-        // Load buffer asynchronously
-    
+    class BufferLoader {    
        /**
         * BufferLoader class property declarations
         * @property {interface} context audio-processing graph
@@ -30,37 +28,27 @@ BufferLoader.js
             this.bufferList = [];
         }
         /**
-         * Makes XHR request for sound, decodes it,
-         * then calls finishedLoading from audio.js
-         * when the bufferList has all the sound fx
+         * Makes XHR request for sound, 
+         * decodes it, 
+         * then calls finishedLoading from audio.js when the bufferList has all the sound fx
          * @param {string} url location of audio file
          * @param {number} index index of audio file
          */
         loadBuffer (url, index) {
-            const loader = this;
-            const request = new XMLHttpRequest();
-            request.open('GET', url);
-            request.responseType = "arraybuffer";
-            request.onload = function () {
-                // Asynchronously decode the audio file data in request.response
-                loader.context.decodeAudioData(request.response).then(function(decodedData) {
-                    loader.bufferList[index] = decodedData;
-                    if (loader.bufferList.length === 5) {
-                        loader.onload(loader.bufferList);
-                    }
+            fetch(url)
+            .then(response => response.arrayBuffer())
+            .then((buffer) => {
+                this.context.decodeAudioData(buffer, (decodedData) => {
+                    this.bufferList[index] = decodedData;
+                    if (this.bufferList.length === 5) this.onload(this.bufferList);
                 })
-            }
-            request.onerror = function () {
-                alert('BufferLoader: XHR error');
-            }
-            request.send();
+            })
+            .catch(reason => alert(`${reason} sound effect`));
         }
         /**
          * Loads sounds into game by calling loadBuffer on each item in urlList
          */
         load () {
-            for (let i = 0; i < this.urlList.length; i++) {
-            this.loadBuffer(this.urlList[i], i);
-            }
+            this.urlList.forEach((url, index) => this.loadBuffer(url, index));
         }
     }
