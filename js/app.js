@@ -2,7 +2,7 @@
 Treehouse Techdegree:
 FSJS project 4 - OOP Game App
 Name: Brandon White
-Date of Last Modification: 28/08/2019
+Date of Last Modification: 06/07/2020
 app.js
 ******************************************/
 
@@ -63,10 +63,7 @@ app.js
             }
         }
     }
-    /**
-     * Audio object instance declaration
-     * @var {Object} background background music
-     */
+
     const background = new Audio();
     background.src = "audio/music/background.mp3";
     background.loop = true;
@@ -96,10 +93,10 @@ app.js
             background.play();
             context.resume();
         }
-        game = new Game ();
+        game = new Game();
         game.startGame();
         document.querySelector('.button').style.display = "block";
-        qwerty = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m",];
+        qwerty = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"];
     });
     /**
      * Adds listener to all buttons of on screen keyboard

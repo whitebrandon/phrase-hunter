@@ -2,7 +2,7 @@
 Treehouse Techdegree:
 FSJS project 4 - OOP Game App
 Name: Brandon White
-Date of Last Modification: 28/08/2019
+Date of Last Modification: 06/07/2020
 Phrase.js
 ******************************************/
 
@@ -14,23 +14,17 @@ Phrase.js
      * @name Phrase
      */
     class Phrase {
-        /**
-         * Game class property declarations
-         * @property {string} phrase phrase
-         * @property {string} category [fictional characters, movie titles, song lyrics, popular idioms, philosophical quotes, before and after, famous authors]
-         * @property {string} hint personal clue about the phrase
-         */
         constructor (phrase, category, hint) {
             this.phrase = phrase.toLowerCase();
             this.category = category.toLowerCase();
             this.hint = hint.toLowerCase();
         }
-	      /**
+        /**
          * Display phrase on game board
          */
         addPhraseToDisplay () {
             const phraseList = document.querySelector('#phrase ul');
-            for (let i = 0; i < this.phrase.length; i++) {
+            for (let i = 0, n = this.phrase.length; i < n; i++) {
                 const listItem = document.createElement('li');
                 if (/^\w{1}$/.test(this.phrase[i])) {
                     listItem.classList.add('hide', 'letter', this.phrase[i]);
@@ -73,9 +67,7 @@ Phrase.js
          * @param {string} letter the letter to check
          * @return {boolean} if letter a match ? true : false 
          */
-        checkLetter (letter) {
-            return this.phrase.includes(letter);
-        }
+        checkLetter = (letter) => this.phrase.includes(letter);
         /**
          * Displays passed letter on screen after a match is found
          * @param {string} letter the letter to display
@@ -94,7 +86,7 @@ Phrase.js
          * @param {string} refChild The element to insert the div element before
          */
         createSection (el, attr, value, refChild) {
-            for (let i = 0; i < el.length; i++) {
+            for (let i = 0, n = el.length; i < n; i++) {
                 const tag = document.createElement(el[i]);
                 if (i === 0 || i === 2) {
                     tag.setAttribute(attr[i], value[i]);
@@ -104,9 +96,7 @@ Phrase.js
                         .insertBefore(tag, document.getElementById(refChild));
                     }
                 }
-                if (i === 1 || i === 2) {
-                    document.getElementById(value[i - 1]).appendChild(tag);
-                }
+                (i === 1 || i === 2) && document.getElementById(value[i - 1]).appendChild(tag);
             }
         }
         /**
@@ -143,7 +133,5 @@ Phrase.js
         /**
          * Shows hint
          */
-        showHint () {
-            document.querySelector('#hint p').innerHTML = this.hint;
-        }
+        showHint = () => document.querySelector('#hint p').innerHTML = this.hint;
     }

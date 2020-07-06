@@ -2,7 +2,7 @@
 Treehouse Techdegree:
 FSJS project 4 - OOP Game App
 Name: Brandon White
-Date of Last Modification: 28/08/2019
+Date of Last Modification: 06/07/2020
 Game.js
 ******************************************/
 
@@ -14,20 +14,13 @@ Game.js
      * @name Game
      */
     class Game {
-        /**
-         * Game class property declarations
-         * @property {number} number of incorrect player guesses
-         * @property {Array} list of phrases to be used in game
-         * @property {null} phrase currently in play
-         * @property {boolean}  active state of the game
-         */
         constructor () {
             this.missed = 0;
             this.phrases = this.createPhrases();
             this.activePhrase = null;
             this.ready = false;
         }
-	/**
+	    /**
          * Begins the game by removing the starting overlay, 
          * selecting a random phrase, hiding it, and displaying it on the page,
          * adding the category of the phrase to the display,
@@ -51,19 +44,13 @@ Game.js
          * Creates phrases for use in game
          * @return {array} an array of phrases that could be used in the game
          */
-        createPhrases () {
-            const phraseList = [];
-            phrase.forEach(object => phraseList.push(new Phrase(object.phrase, object.category, object.hint)));
-            return phraseList;
-        }
+        createPhrases = () => phrase.map(object => new Phrase(object.phrase, object.category, object.hint));
         /**
          * Gets random phrase from this.phrases
          * @return {object} phrase object chosen to be used
          */
-        getRandomPhrase () {
-            return this.phrases[Math.floor(Math.random() * this.phrases.length)];
-        }
-	/**
+        getRandomPhrase = () => this.phrases[Math.floor(Math.random() * this.phrases.length)];
+	    /**
          * Adds instructions to display
          */
         addInstructionsToDisplay () {
@@ -126,9 +113,7 @@ Game.js
          * Checks for winning move
          * @return {boolean} if game has been won ? true : false
          */
-        checkForWin () {
-            return document.getElementsByClassName('hide').length > 0 ? false : true;
-        }
+        checkForWin = () => document.getElementsByClassName('hide').length > 0 ? false : true;
         /**
          * Removes a life from the scoreboard
          * Increases the value of the missed property
@@ -145,7 +130,7 @@ Game.js
                 this.end(500, 450, false);
             }
         }
-	/**
+	    /**
          * Displays game over message
          * @param {boolean} gameWon - whether or not the user won the game
          */
@@ -166,9 +151,7 @@ Game.js
          * @param {array} list - list of messages
          * @return {string} random message from list array
          */
-        getRandomMessage (list) {
-            return list[Math.floor(Math.random() * list.length)]
-        };
+        getRandomMessage = (list) => list[Math.floor(Math.random() * list.length)];
         /**
          * Posts game-over message to display
          * @param {variable} messageType — The type of message to display on overlay
