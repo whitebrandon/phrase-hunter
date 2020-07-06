@@ -2,7 +2,7 @@
 Treehouse Techdegree:
 FSJS project 4 - OOP Game App
 Name: Brandon White
-Date of Last Modification: 28/08/2019
+Date of Last Modification: 06/07/2020
 modal.js
 ******************************************/
 
@@ -29,8 +29,7 @@ modal.js
     (() => {
         let i = 0;
         for (let prop in modal) {
-        modal[prop] = document.createElement(elements[i]);
-        i++;
+        modal[prop] = document.createElement(elements[i++]);
         }
     })();
     /**
@@ -71,7 +70,7 @@ modal.js
     modal.modalBody.className = 'modal-body';
     modal.modalTitle.textContent = "Themes";
     
-    for (let i = 0; i < themeNames.length; i++) {
+    for (let i = 0, n = themeNames.length; i < n; i++) {
         addPageThemes(themeNames[i]);
     }
     
