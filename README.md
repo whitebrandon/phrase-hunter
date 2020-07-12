@@ -1,8 +1,4 @@
-# Techdegree Project 4 | OOP GAME SHOW APP
-
-a COURSE BY TREEHOUSE
-
-JS CODE by Brandon White | white.brandonsean@gmail.com
+# PHRASE HUNTER
 
 ## Objective:
 The objective of this project was to build an interactive game app called __Phrase Hunter__ using object oriented programming principles.
